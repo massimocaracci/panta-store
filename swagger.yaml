@@ -1,0 +1,48 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: 'Panta Store API'
+  description: 'A simple online store management system.'
+paths:
+  /categories:
+    get:
+      summary: 'Fetch all categories'
+      responses:
+        '200':
+          description: 'Successful operation'
+    post:
+      summary: 'Create a new category'
+      responses:
+        '201':
+          description: 'Category created'
+  /categories/{id}:
+    get:
+      summary: 'Fetch a category by its ID'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'string'
+      responses:
+        '200':
+          description: 'Successful operation'
+    put:
+      summary: 'Update an existing category'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'string'
+      responses:
+        '200':
+          description: 'Category updated'
+    delete:
+      summary: 'Delete a category'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'string'
+      responses:
+        '204':
+          description: 'Category deleted'

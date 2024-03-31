@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  java:
+    build: ./docker/java  # Path to the dockerfile
+    working_dir: /opt/app
+    volumes:
+      - .m2:/root/.m2     # Maps the Maven artifacts locally
+      - .:/opt/app        # Maps everything in the project structure to inside the docker image
