@@ -3,20 +3,28 @@ info:
   version: '1.0.0'
   title: 'Panta Store API'
   description: 'A simple online store management system.'
+tags:
+  - name: 'Categories'
+    description: 'APIs related to categories'
+  - name: 'Products'
+    description: 'APIs related to products'
 paths:
   /categories:
     get:
+      tags: ['Categories']
       summary: 'Fetch all categories'
       responses:
         '200':
           description: 'Successful operation'
     post:
+      tags: ['Categories']
       summary: 'Create a new category'
       responses:
         '201':
           description: 'Category created'
   /categories/{id}:
     get:
+      tags: ['Categories']
       summary: 'Fetch a category by its ID'
       parameters:
         - name: 'id'
@@ -27,6 +35,7 @@ paths:
         '200':
           description: 'Successful operation'
     put:
+      tags: ['Categories']
       summary: 'Update an existing category'
       parameters:
         - name: 'id'
@@ -37,6 +46,7 @@ paths:
         '200':
           description: 'Category updated'
     delete:
+      tags: ['Categories']
       summary: 'Delete a category'
       parameters:
         - name: 'id'
@@ -46,3 +56,28 @@ paths:
       responses:
         '204':
           description: 'Category deleted'
+  /products:
+    get:
+      tags: ['Products']
+      summary: 'Fetch all products'
+      responses:
+        '200':
+          description: 'Successful operation'
+    post:
+      tags: ['Products']
+      summary: 'Add a new product'
+      responses:
+        '201':
+          description: 'Product created'
+  /products/{id}:
+    get:
+      tags: ['Products']
+      summary: 'Fetch a product by its ID'
+      parameters:
+        - name: 'id'
+          in: 'path'
+          required: true
+          type: 'string'
+      responses:
+        '200':
+          description: 'Successful operation'
