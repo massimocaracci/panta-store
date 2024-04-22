@@ -1,8 +1,6 @@
 package org.pantasoft.pantastore.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +17,9 @@ import java.util.UUID;
 public class ProductEntity {
     @Id
     UUID productId;
-    UUID categoryId;
+    @ManyToOne
+    @JoinColumn(name = "categoryId", referencedColumnName = "categoryId")
+    CategoryEntity category;
     String name;
     String description;
 }
