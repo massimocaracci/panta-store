@@ -24,11 +24,24 @@ spring:
     basename: lang/messages
 
   datasource:
-    url: jdbc:h2:mem:mydb
+    url: jdbc:h2:mem:pantadb
     username: sa
     password: password
     driverClassName: org.h2.Driver
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        default_schema: pantadb
+        ddl-auto: validate
+        dialect: org.hibernate.dialect.H2Dialect
+
+  liquibase:
+    contexts: dev
+    defaultSchema: pantadb
+    enabled: true
+    liquibaseSchema: public
