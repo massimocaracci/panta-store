@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.pantasoft.pantastore.model.CategoryEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
@@ -15,10 +15,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
+@ActiveProfiles("test")
 class CategoryRepositoryTest {
-
-    @Autowired
-    private TestEntityManager entityManager;
 
     @Autowired
     private CategoryRepository categoryRepository;
@@ -30,7 +28,7 @@ class CategoryRepositoryTest {
         category.setName("Test Category");
         category.setDescription("Test Description");
 
-        entityManager.persistAndFlush(category);
+        categoryRepository.save(category);
 
         CategoryEntity foundCategory = categoryRepository.findByName(category.getName());
 
@@ -45,7 +43,7 @@ class CategoryRepositoryTest {
         category.setName("Test Category");
         category.setDescription("Test Description");
 
-        entityManager.persistAndFlush(category);
+        categoryRepository.save(category);
 
         CategoryEntity foundCategory = categoryRepository.findById(category.getCategoryId()).orElse(null);
 
@@ -65,8 +63,8 @@ class CategoryRepositoryTest {
         category2.setName("Test Category 2");
         category2.setDescription("Test Description 2");
 
-        entityManager.persistAndFlush(category1);
-        entityManager.persistAndFlush(category2);
+        categoryRepository.save(category1);
+        categoryRepository.save(category2);
 
         List<CategoryEntity> allCategories = categoryRepository.findAll();
 
@@ -80,7 +78,7 @@ class CategoryRepositoryTest {
         category.setName("Test Category");
         category.setDescription("Test Description");
 
-        entityManager.persistAndFlush(category);
+        categoryRepository.save(category);
         categoryRepository.deleteById(category.getCategoryId());
 
         CategoryEntity foundCategory = categoryRepository.findById(category.getCategoryId()).orElse(null);
