@@ -35,8 +35,12 @@ public class ProductController {
 
     @PostMapping(value = "", produces = APPLICATION_JSON_VALUE)
     public ResponseEntity<?> addProduct(@Valid @RequestBody ProductRequest request) {
-        productService.addProduct(request);
-        return accepted().build();
+        try {
+            productService.addProduct(request);
+            return accepted().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/{productId}", produces = APPLICATION_JSON_VALUE)

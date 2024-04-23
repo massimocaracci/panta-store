@@ -26,9 +26,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class ProductControllerTest extends UnityTestUtils {
 
     @Autowired
