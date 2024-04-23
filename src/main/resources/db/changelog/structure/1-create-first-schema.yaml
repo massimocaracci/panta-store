@@ -33,3 +33,35 @@ databaseChangeLog:
                   type: varchar(255)
                   constraints:
                     nullable: false
+        - createTable:
+            tableName: product
+            columns:
+              - column:
+                  name: productId
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: categoryId
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: product
+            baseColumnNames: categoryId
+            constraintName: fk_product_category
+            referencedTableName: category
+            referencedColumnNames: categoryId
+            validate: true
+
