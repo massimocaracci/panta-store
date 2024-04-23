@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: massimo
+      comment: Create schema
+      context: dev
+      changes:
+        - sql:
+            comment: Create schema
+            sql: CREATE SCHEMA IF NOT EXISTS pantadb;
+  - changeSet:
+      id: 2
+      author: massimo
+      comment: Table for storing categories
+      context: dev
+      changes:
+        - createTable:
+            tableName: category
+            columns:
+              - column:
+                  name: categoryId
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
